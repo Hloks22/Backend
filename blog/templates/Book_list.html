@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>My Books List</h1>
+    
+    {%for book in books%}
+    <ul>
+    <li>Title: {{book.title}}</li>
+    <li>subtitle: {{book.subtitle}}</li>
+    <li>Author: {{book.Author}}</li>
+    <li>Isbn: {{book.Isbn}}</li>
+    </ul>
+    {%endfor%}
+</body>
+</html>

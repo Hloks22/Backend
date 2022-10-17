@@ -1,0 +1,119 @@
+@media screen and (max-width:678px){
+
+
+.nav-links{
+    position: absolute;
+    right: 0;
+    height: 92vh;
+    top: 8vh;
+    background-color:var(--button-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    transform: translate(100%);
+    transition: transform 0.5s ease-in;
+    z-index: 999;
+}  
+
+body{
+    overflow-x: hidden;
+    /* to avoid horizontal scrolling */
+}
+
+.nav-links li{
+    opacity: 1o;
+    /* to make links not visible at first */
+}
+
+ .burger{
+     display: block;
+     cursor: pointer;
+ }
+
+/* Tranform the nav links back to position */
+.nav-active{
+    transform: translate(0);
+}
+    
+/* Animate the navigation links one by one */
+
+@keyframes navLinksFade{
+    from{
+        opacity: 0;
+        transform: translate(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(0px);
+    }
+}
+
+/* toggle the lines */
+.toggle .line1{
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.toggle .line2{
+    opacity: 0;
+}
+
+.toggle .line3{
+    transform: rotate(45deg), translate(-5px, -6px);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

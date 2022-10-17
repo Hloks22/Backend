@@ -1,0 +1,24 @@
+{% extends 'base.html'%}
+
+{% block title %} Home {% endblock title %}
+{% block content %}
+    {% load static%}
+    <img src="{% static "images/BMW.png" %}" alt="Myimg\">
+    <h1>My first django Template </h1>
+    {%for post in posts%}
+    <h2>
+    <a href="{{post.get_absolute_url}}">{{post.title}}
+    </a>
+    </h2>
+
+    {%if post.image%}
+    <img src="{{post.image.url}}" alt="">
+    {% endif %}
+
+    <p class="date">
+    Published {{post.publish}} by {{post.author}}
+    </p>
+      
+    {%endfor%}
+    {% include "pagination.html" with page=posts  %}
+{% endblock content %}

@@ -1,0 +1,215 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Arima:wght@100;200;300;400;500;600;700&family=Cairo:wght@200;300;400;500;600;700;800;900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Work+Sans:ital,wght@0,100;1,100&display=swap');
+
+:root{
+    --bg-color: rgba(200, 138, 37, 0.863);
+    --text-color: rgb(0, 0, 0);
+    --headline-color: black;
+    --button-color: rgb(255, 162, 0);
+    --accent-color: rgb(241, 255, 192);
+    --headline-font:'Lato', sans-serif;
+    --body-font: 'Work Sans', sans-serif;
+}
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-size: 16px;
+    font-family: var(--body-font);
+    background-color:var(--bg-color);
+}
+
+nav{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 8vh;
+    background-color: var(--button-color);
+}
+.logo{
+    color: var(--text-color);
+    font-size: 1.4rem;
+    font-weight: bolder;
+    letter-spacing: 1.5px;
+}
+.nav-links{
+    display: flex;
+    width: 40%;
+    justify-content: space-around
+}
+
+.nav-links li{
+    list-style: none;
+}
+
+.nav-links a{
+    color: var(--text-color);
+    text-decoration: none;
+    letter-spacing: 3px;
+    font-weight: bold;
+    font-size: 1.3rem;
+    font-family: var(--headline-font);
+}
+
+nav > .burger > div{
+    width: 25px;
+    height: 3px;
+    background-color: var(--accent-color);
+    margin: 5px;
+    transition: all 0.3s ease;
+}
+
+.burger{
+    display: none;
+}
+
+/* tablet zone */
+@media screen and (max-width: 1024px) {
+    .nav-links{
+        width: 50%;
+    }
+}
+
+/* hero section start */
+
+.herosection{
+    height: calc(100vh - 8vh);
+    background-image:url('../images/BAN.jpeg');
+    background-repeat:no-repeat;
+    background-size:cover;
+    position: relative;
+}
+
+.herosection::before{
+    content: "";
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left:0;
+    background-color: rgb(44, 46, 47);
+    position: absolute;
+    opacity:0.7;
+}
+
+.main{
+    display:flex;
+    flex-direction:column;
+    position:relative;
+    width:80%;
+    margin:0 auto;
+    padding-top:20rem;
+}
+
+.sectionTitle{
+     
+    color:rgb(152, 161, 16);
+    font-size:2rem;
+    font-weight:lighter;
+    letter-spacing:1rem;
+    margin-bottom:1rem;
+    font-family:'';
+    text-shadow: 0 1px 0 rgb(170, 48, 48)
+}
+
+.main p{
+
+    color: rgb(255, 0, 140);
+    line-height:1.6rem;
+    font-size:1.2rem;
+    font-weight:bolder;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.main .hero{
+    width:100px;
+    display:inline-block;
+    border-radius:5px;
+    outline:none;
+    border:none;
+    margin-top:10px;
+    transition:all 0.4s ease-in;
+}
+
+.hero:hover{
+    background-color:rgb(238, 255, 0);
+}
+
+.hero a{
+    padding: 10px 0p;
+    text-decoration:none;
+    font-size:1rem;
+    display: inline-block;
+}
+.category{
+  height:10vh;
+  display:flex;
+  width:90%;
+  margin: 0 auto;
+  justify-content: space-around;
+  align-items:center;  
+}
+
+.category a{
+    color:var(--headline-font);
+    text-decoration: none;
+}
+
+.active{
+    background-color: rgb(250, 5, 5);
+    color: aliceblue;
+}
+
+.card-wrapper{
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
+    gap: 10px
+}
+
+.main-content{
+    background-color: rgb(230, 15, 83);
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.card-itms{
+    display: flex;
+    width: 100%;
+    border-bottom: 1px solid rgba(1, 23, 45, 0.539);
+}
+
+.blog-images{
+    width: 30%;
+    transition: transform .2s;
+}
+
+.blog-images img{
+    width:100%;
+}
+
+.blog-images:hover{
+    -ms-transform: scale(1.5); /* IE 9 */
+    -webkit-transform: scale(1.5); /* Safari 3-8 */
+    transform: scale(1.5); 
+}
+
+article{
+    padding: 70px;
+    width: 30%;
+    background-color: rgb(103, 53, 136);
+}
+
+.article > div.search-box input{
+    width: 90px;
+    border-radius:5px;
+    display:Block;
+    padding: 20px;
+    border:none;
+    margin:20px auto;
+    font-size: 1.6rem
+}
