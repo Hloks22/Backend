@@ -1,4 +1,3 @@
 #this file ignore file
 vspace/
-settings.py
-introtodjango/.env
+.env
