@@ -1,7 +1,7 @@
 from cgitb import html
 from unicodedata import name
 from multiprocessing import context
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 # Create your views here.
 from django.http import HttpResponse
 import datetime
@@ -10,6 +10,14 @@ from django.views.generic import  TemplateView
 from .models import Book, Post
 from  .forms import commentform
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
+
+from django.shortcuts import render
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
+from django.contrib.auth.forms import AuthenticationForm
+# Create your views here.  
+
 
 def dispalyTime(reqest):
     now = datetime.datetime.now()
@@ -73,3 +81,22 @@ def post_detail(request, year, month,day, post):
     else: 
         comment_form =commentform()
     return render(request, "post_detail.html", {"post":post,"comments":comments,"comment_form":comment_form,'new_comment':new_comment})
+
+def LoginView(request):
+    if request.method== 'Post':
+        forms=AuthenticationForm(request, data=request.Post)
+        if form.is_valid*():
+            username=form.cleaned_data.get('username')
+            password=form.cleaned_data.get('password')
+            user=authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                login(request, user)
+                messages.info(request, f"you are now logged in as {username}")
+                return redirect('profile')
+            else:
+                messages.error(request, f"username/password is invalid")
+        else:
+                messages.error(request, f"username/password is invalid") 
+    form=AuthenticationForm   
+    return render(request,"authenticate/login.html", context={"form":form})

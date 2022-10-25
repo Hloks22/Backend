@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     # local blog
     'blog',
     "crispy_forms",
-]
+    'Account'
+] 
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

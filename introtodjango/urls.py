@@ -17,10 +17,13 @@ from django.contrib import admin
 from django.urls import path, include 
 from django.conf.urls.static import static
 from django.conf import settings
+
+import Account
 # includes your urls frm 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include("blog.urls")),
+    # path("",include('Account.urls'))
     # path("contact/", include("blog.urls")),
     # path("ecome/", include("Ecommerce.urls")),
 ]
