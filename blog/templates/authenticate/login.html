@@ -4,7 +4,7 @@
 <div class="login_wrapper">
     <div class="container">
         <h2>log in</h2>
-        <form method="post" class="form">
+        <form method="POST" class="form">
             {% csrf_token %}
             {{form|crispy}}
             <button typ="submit"> log in</button>

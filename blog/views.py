@@ -9,6 +9,7 @@ from django.views.generic import  TemplateView
 # from requests import post
 from .models import Book, Post
 from  .forms import commentform
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
@@ -83,20 +84,26 @@ def post_detail(request, year, month,day, post):
     return render(request, "post_detail.html", {"post":post,"comments":comments,"comment_form":comment_form,'new_comment':new_comment})
 
 def LoginView(request):
-    if request.method== 'Post':
-        forms=AuthenticationForm(request, data=request.Post)
-        if form.is_valid*():
+    if request.method== 'POST':
+        form=AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
             username=form.cleaned_data.get('username')
             password=form.cleaned_data.get('password')
             user=authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                login(request, user)
-                messages.info(request, f"you are now logged in as {username}")
-                return redirect('profile')
+                messages.info(request, f"you are now logged in as {username}"),
+                return redirect('blog:profile')
             else:
                 messages.error(request, f"username/password is invalid")
         else:
                 messages.error(request, f"username/password is invalid") 
-    form=AuthenticationForm   
+    form=AuthenticationForm()  
     return render(request,"authenticate/login.html", context={"form":form})
+@login_required(login_url='blog:login')
+def profileView(request):
+    return render(request, "blog:profile", {})
+
+def logout_view(request):
+    logout(request)
+    return redirect('/')
