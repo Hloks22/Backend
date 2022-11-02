@@ -100,9 +100,11 @@ def LoginView(request):
                 messages.error(request, f"username/password is invalid") 
     form=AuthenticationForm()  
     return render(request,"authenticate/login.html", context={"form":form})
+
+
 @login_required(login_url='blog:login')
 def profileView(request):
-    return render(request, "blog:profile", {})
+    return render(request, "profile.html")
 
 def logout_view(request):
     logout(request)
