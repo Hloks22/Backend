@@ -11,16 +11,30 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link href="{% static 'css/app.css' %}" rel="stylesheet">
     <link href="{% static 'css/mobile.css' %}" rel="stylesheet">
+    {% comment %} <link href="{% static 'css2/font.css' %}" rel="stylesheet">
+    <link href="{% static 'css2/style.css' %}" rel="stylesheet">
+    <link href="{% static 'css2/stylesheet.css' %}" rel="stylesheet"> {% endcomment %}
+    {% comment %} <link href="{% static 'css2/mobile.css' %}" rel="stylesheet"> {% endcomment %}
       
   <nav>
     <div class="logo">
         <h1>Fashion Blog</h1>
     </div>
     <ul class="nav-links">
-        <li><a href="">Home</a> </li>
-        <li><a href="">About</a></li> 
-        <li><a href="">Contacts</a></li>
-        <li><a href="">Blog</a></li>
+        <li class="menu-item"><a href="{% url 'blog:home'%}">Home</a> </li>
+        <li class="menu-item"><a href="{% url 'blog:About'%}">About</a></li> 
+        <li class="menu-item"><a href="">Contacts</a></li>
+        <li class="menu-item"><a href="{% url 'blog:home'%}">Blog</a></li>
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'blog:logout' %}">logout</a></li>
+        {% else %}
+        <li class="nav-item"><a href="{% url 'blog:login' %} " class="nav-link">Login</a></li>
+      <li><a href="{% url 'account:signup' %}">signup</a></li>
+        {% endif %}
+
+        {% if user.is_authenticated %}
+        <li>hello {{request.user}}</li>
+        {% endif %}
     </ul>
     <div class="burger">
         <div class="line1"></div>
@@ -28,7 +42,16 @@
         <div class="line3"></div>
     </div>
 </nav>
-  
+  <div class="container mt-5">
+    {%if messages%}
+    {%for message in messages%}
+    <div class="alert alert-danger mt-5" role="alert">
+        {{message}}
+        {%endfor%}
+
+    {% endif %} 
+    </div>
+  </div>
   {% block content  %}
   
 

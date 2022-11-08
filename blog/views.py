@@ -1,7 +1,7 @@
 from cgitb import html
 from unicodedata import name
 from multiprocessing import context
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 # Create your views here.
 from django.http import HttpResponse
 import datetime
@@ -9,7 +9,16 @@ from django.views.generic import  TemplateView
 # from requests import post
 from .models import Book, Post
 from  .forms import commentform
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
+
+from django.shortcuts import render
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
+from django.contrib.auth.forms import AuthenticationForm
+# Create your views here.  
+
 
 def dispalyTime(reqest):
     now = datetime.datetime.now()
@@ -18,8 +27,8 @@ def dispalyTime(reqest):
 
 
 def Greetme(reqest):
-    html = "wlcome to my contact page"
-    return HttpResponse(html)
+    # html = "wlcome to my contact page"
+    return render(reqest, "contacts.html")
 
 # class based views
 class Myview(TemplateView):
@@ -73,3 +82,30 @@ def post_detail(request, year, month,day, post):
     else: 
         comment_form =commentform()
     return render(request, "post_detail.html", {"post":post,"comments":comments,"comment_form":comment_form,'new_comment':new_comment})
+
+def LoginView(request):
+    if request.method== 'POST':
+        form=AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            username=form.cleaned_data.get('username')
+            password=form.cleaned_data.get('password')
+            user=authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                messages.info(request, f"you are now logged in as {username}"),
+                return redirect('blog:profile')
+            else:
+                messages.error(request, f"username/password is invalid")
+        else:
+                messages.error(request, f"username/password is invalid") 
+    form=AuthenticationForm()  
+    return render(request,"authenticate/login.html", context={"form":form})
+
+
+@login_required(login_url='blog:login')
+def profileView(request):
+    return render(request, "profile.html")
+
+def logout_view(request):
+    logout(request)
+    return redirect('/')

@@ -1,4 +1,8 @@
 #this file ignore file
 vspace/
+<<<<<<< HEAD
 settings.py
 introtodjango/.env
+=======
+settings.py
+>>>>>>> testing
