@@ -3,7 +3,7 @@
 {% block title %} Home {% endblock title %}
 {% block content %}
     {% load static%}
-    <img src="{% static "images/BMW.png" %}" alt="Myimg\">
+    {% comment %} <img src="{% static "images/BMW.png" %}" alt="#"> {% endcomment %}
     <h1>My first django Template </h1>
     {%for post in posts%}
     <h2>

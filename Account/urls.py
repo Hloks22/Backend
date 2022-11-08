@@ -8,5 +8,6 @@ app_name='account'
 
 urlpatterns = [
    path("signup/",regiterview,name="signup"),
+   path('<pk>/update', views.UserEddView.as_view(),name="edit_profile")
          
 ]

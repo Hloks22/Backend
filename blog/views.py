@@ -27,8 +27,8 @@ def dispalyTime(reqest):
 
 
 def Greetme(reqest):
-    html = "wlcome to my contact page"
-    return HttpResponse(html)
+    # html = "wlcome to my contact page"
+    return render(reqest, "contacts.html")
 
 # class based views
 class Myview(TemplateView):

@@ -14,12 +14,17 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    background-color:transparent;
 }
 
 body{
     font-size: 16px;
-    font-family: var(--body-font);
+    font-family: var(--headline-font);
     background-color:var(--bg-color);
+    background-image:url(../images/jozi.jpg);
+    background-repeat:no-repeat;
+    background-size:cover;
+    position:relative;
 }
 
 nav{
@@ -51,6 +56,7 @@ nav{
     letter-spacing: 3px;
     font-weight: bold;
     font-size: 1.3rem;
+    margin-right: 15px;
     font-family: var(--headline-font);
 }
 
@@ -75,13 +81,13 @@ nav > .burger > div{
 
 /* hero section start */
 
-.herosection{
+/* .herosection{
     height: calc(100vh - 8vh);
-    background-image:url('../images/BAN.jpeg');
+    background-image:url(/static/images/BMW.png);
     background-repeat:no-repeat;
     background-size:cover;
     position: relative;
-}
+} */
 
 .herosection::before{
     content: "";

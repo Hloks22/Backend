@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'blog',
     "crispy_forms",
     'Account'
+    # 'jazzmin'
 ] 
 
 MIDDLEWARE = [
