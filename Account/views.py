@@ -35,4 +35,4 @@ class UserEddView(UpdateView):
     model = User
     form_class = UserChangeForm
     template_name = 'registration/editprofile.html'
-    success_url = reverse_lazy('bolg:profile')
+    success_url = reverse_lazy('blog:profile')
