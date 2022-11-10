@@ -21,10 +21,10 @@ body{
     font-size: 16px;
     font-family: var(--headline-font);
     background-color:var(--bg-color);
-    background-image:url(../images/jozi.jpg);
+    /* background-image:url(../images/jozi.jpg);
     background-repeat:no-repeat;
     background-size:cover;
-    position:relative;
+    position:relative; */
 }
 
 nav{

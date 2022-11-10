@@ -1,11 +1,20 @@
+import datetime
 from cgitb import html
 from unicodedata import name
-from multiprocessing import context
-from django.shortcuts import get_object_or_404, redirect
+
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import AuthenticationForm
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 # Create your views here.
 from django.http import HttpResponse
-import datetime
-from django.views.generic import  TemplateView
+from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse_lazy
+from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
+                                  TemplateView, UpdateView)
+
+from .forms import commentform
 # from requests import post
 from .models import Book, Post
 from  .forms import commentform
@@ -71,7 +80,7 @@ def Post_list(request):
 # view for single post 
 def post_detail(request, year, month,day, post):
     post = get_object_or_404(Post, slug=post, status="published",publish__year=year, publish__month=month, publish__day=day)
-    comments = post.comments.filter(active=True)
+    comments = post.comments.filter(active = True)
     new_comment = None
     if request.method=='Post':
         comment_form =commentform(data=request.Post)
@@ -92,8 +101,7 @@ def LoginView(request):
             user=authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                messages.info(request, f"you are now logged in as {username}"),
-                return redirect('blog:profile')
+                messages.info(request, f"you  are now logged in as{username}")
             else:
                 messages.error(request, f"username/password is invalid")
         else:
@@ -109,3 +117,37 @@ def profileView(request):
 def logout_view(request):
     logout(request)
     return redirect('/')
+
+
+# ctreate a new post view
+
+class Addpostview(CreateView):
+    model= Post
+    template_name = 'addBlogPost.html'
+    fields = '__all__'
+    
+    success_url = reverse_lazy('blog:profile')
+    
+    
+class Postlistview(ListView):
+    model = Post
+    template_name = "profile.html"
+    
+    
+    
+    # update post
+class EditPostView(UpdateView):
+    model=Post
+    template_name ='editPost.html'
+    fields ='__all__'
+    
+    success_url = reverse_lazy('blog:profile')
+    
+# deleting post 
+
+@login_required
+def DeletePost(reuest, id):
+    post_dele= get_object_or_404(Post,  id = id)
+    post_dele.delete()
+    messages.error(reuest, "Post was deleted!!!!victory!!!")
+    return redirect('blog:profile')

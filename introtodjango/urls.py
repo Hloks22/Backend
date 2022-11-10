@@ -22,7 +22,7 @@ import Account
 # includes your urls frm 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", include("blog.urls")),
+    path("", include('blog.urls')),
     path("",include('Account.urls'))
     # path("contact/", include("blog.urls")),
     # path("ecome/", include("Ecommerce.urls")),
